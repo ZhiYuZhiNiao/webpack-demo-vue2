@@ -35,8 +35,9 @@ module.exports = {
     rules: [
       // vue-style-loader 应该在 vue-loader里面就已经有了所以不要下载？,, webpack 只认识 js 和 json类文件。。所有其他类得文件处理都需要 loader 加载器进行处理之后 webpack才认识
       { test: /\.css$/i, use: ['vue-style-loader', 'css-loader'], },
-      { test: /\.(png|svg|jpg|jpeg|gif)$/i, use: [{ loader: 'file-loader', options: { outputPath: 'static/img' }}] }, // 图片类资源得处理, 打包之后输出到 img 文件夹下 file-loade 可以将文件输出到指定文件 webpack 官网说得
-      { test: /\.(woff|woff2|eot|ttf|otf)$/i, use: [{ loader: 'file-loader', options: { outputPath: 'static/fonts' }}] }, // 字体资源得处理, 打包之后得输出路径
+      // 这些资源打包之后指定的路径,generator 里面配置的是打包之后文件的路径,  asset/resource 这是 webpack5 新出的方式
+      { test: /\.(png|svg|jpg|jpeg|gif)$/i, type: "asset/resource", generator: { filename: `static/img/[contenthash][ext]` } },
+      { test: /\.(woff|woff2|eot|ttf|otf)$/i, type: "asset/resource", generator: { filename: `static/fonts/[contenthash][ext]` } }, 
       { test: /\.s[ac]ss$/i, use: ['vue-style-loader', 'css-loader', 'sass-loader'] },
       { test: /\.vue$/, use: ['vue-loader']  }
     ]

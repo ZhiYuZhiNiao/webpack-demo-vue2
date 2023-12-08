@@ -4,6 +4,7 @@ import App from './App.vue'
 import 'element-ui/lib/theme-chalk/index.css'; /* 引入了 css 文件，所以需要 css loader 进行处理 */
 import { Button } from 'element-ui';
 import '@/style/index.scss' // scss 文件 所以需要 sass-loader 进行加载处理, webpack才能认识 然后才可以正确得打包他
+import '@/assets/iconfont/iconfont.css'
 
 import Foo from '@/views/Foo.vue'
 const Bar = () => import(/* webpackChunkName: "group-bar" */ './views/Bar.vue') // 异步加载文件
